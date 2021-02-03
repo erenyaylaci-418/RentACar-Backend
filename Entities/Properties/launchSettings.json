@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Entities": {
+      "commandName": "Executable"
+    }
+  }
+}
