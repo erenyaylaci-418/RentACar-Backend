@@ -10,8 +10,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            //Car car1 = new Car { Id = 0, BrandId = 1, ModelYear = 2001, DailyPrice = 100, Description = "Bu araç SUV türü güçlü motorludur" };
+           CarManager carManager = new CarManager(new EfCarDal());
+            //Car car1 = new Car { Id = 1, BrandId = 1, ModelYear = 2001, DailyPrice = 100, Description = "Bu araç SUV türü güçlü motorludur" };
             //carManager.Add(car1);
             foreach (var item in carManager.GetAll())
             {
