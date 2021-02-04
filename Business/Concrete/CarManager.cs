@@ -17,13 +17,14 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            var strlen = car.Description.Length;
+            if (car.DailyPrice > 0 && strlen >= 2)
             {
                 _carDal.Add(car);
             }
             else
             {
-                Console.WriteLine("Yanlış giriş tekrar deneyiniz");
+                Console.WriteLine("Tekrar deneyiniz");
             }
         }
 
