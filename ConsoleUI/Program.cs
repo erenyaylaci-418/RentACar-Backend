@@ -15,9 +15,9 @@ namespace ConsoleUI
             // carManager.Add(car1);
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var item in brandManager.GetAll())
+            foreach (var item in carManager.GetCarDetails())
             {
-                Console.WriteLine(item.BrandName);
+                Console.WriteLine(item.BrandName + "//" + item.ColorName + "//" + item.ModelYear + "//" + item.DailyPrice);
             }
         }
     }
