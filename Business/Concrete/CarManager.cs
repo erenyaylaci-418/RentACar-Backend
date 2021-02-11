@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,27 +18,48 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car entity)
         {
-            var strlen = car.Description.Length;
-            if (car.DailyPrice > 0 && strlen >= 2)
-            {
-                _carDal.Add(car);
-            }
-            else
-            {
-                Console.WriteLine("Tekrar deneyiniz");
-            }
+            _carDal.Add(entity);
+            return new SuccessResult(Messages.Added);
+
         }
 
-        public List<Car> GetAll()
+        public IResult Delete(Car entity)
         {
-            return _carDal.GetAll();
+            _carDal.Delete(entity);
+            return new SuccessResult(Messages.Deleted);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.Listed);
+        }
+
+        public SuccessDataResult<List<Car>> GetAllByBrandId(int Id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == Id),Messages.Listed);
+        }
+
+        public SuccessDataResult<List<Car>> GetAllByColorId(int Id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == Id), Messages.Listed);
+        }
+
+        public IDataResult<Car> GetById(int Id)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == Id));
+        }
+
+        public SuccessDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
+        public IResult Upgrade(Car entity)
+        {
+            _carDal.Update(entity);
+            return new SuccessResult(Messages.Upgraded);
         }
     }
 }
