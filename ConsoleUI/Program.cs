@@ -58,7 +58,7 @@ namespace ConsoleUI
             brandManager.Add(brand3);
             */
             
-            Car car1 = new Car { BrandId = 1,ColorId = 1, ModelYear = 2001, DailyPrice = 100, Description = "Bu araç SUV türü güçlü motorludur" };
+            Car car1 = new Car {BrandId = 1,ColorId = 1, ModelYear = 2001, DailyPrice = 100, Description = "Bu araç SUV türü güçlü motorludur" };
             Car car2 = new Car { BrandId = 2, ColorId = 1, ModelYear = 2019, DailyPrice = 150, Description = "Bu araç otonom sürüş keyfi yaşatır" };
             Car car3 = new Car { BrandId = 1, ColorId = 1,ModelYear = 2011, DailyPrice = 200, Description = "Bu araç SUv türü güçlü motorludur Az yakar çok kaçar" };
             Car car4 = new Car { BrandId = 2, ColorId = 1, ModelYear = 2015, DailyPrice = 50, Description = "Uygun fiyatlı şehir içi elektrikli" };
