@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             
                 if (carImage.ImageFile.Length > 0)
                 {
-                string path = "C:/Users/ErenYaylaci/Desktop/software camping/ReCapProject/WebAPI"+"/Images";
+                string path = "C:/Users/ErenYaylaci/Desktop/software camping/ReCapProject"+"/Images";
                     //_webHostEnviroment.WebRootPath + "\\CarImages\\";
                     //Path.Combine(_webHostEnviroment.WebRootPath, "CarImages");
                 if (!Directory.Exists(path))
