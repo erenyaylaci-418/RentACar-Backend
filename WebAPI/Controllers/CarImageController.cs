@@ -1,4 +1,5 @@
-﻿using Entities.Concrete.ImageEntity;
+﻿using Business.Abstract;
+using Entities.Concrete.ImageEntity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,11 @@ namespace WebAPI.Controllers
     {
 
         public static IWebHostEnvironment _webHostEnviroment;
-        public CarImageController(IWebHostEnvironment webHostEnviroment)
+        ICarImageService _carImageService;
+        public CarImageController(IWebHostEnvironment webHostEnviroment, ICarImageService carImageService)
         {
             _webHostEnviroment = webHostEnviroment;
+            _carImageService = carImageService;
         }
         [HttpPost("add")]
         public IActionResult ImageAdd([FromForm] CarImage carImage)
@@ -26,8 +29,10 @@ namespace WebAPI.Controllers
             
                 if (carImage.ImageFile.Length > 0)
                 {
-                string path = Path.Combine(_webHostEnviroment.WebRootPath,"CarImages");
-                    if (!Directory.Exists(path))
+                string path = "C:/Users/ErenYaylaci/Desktop/software camping/ReCapProject/WebAPI"+"/Images";
+                    //_webHostEnviroment.WebRootPath + "\\CarImages\\";
+                    //Path.Combine(_webHostEnviroment.WebRootPath, "CarImages");
+                if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
                     }
@@ -41,6 +46,7 @@ namespace WebAPI.Controllers
                         }
 
                     carImage.ImageName = guidFileName;
+                _carImageService.Add(carImage);
                 return Ok();
                 }
 
