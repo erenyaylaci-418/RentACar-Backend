@@ -2,7 +2,7 @@
  Id int Primary key Identity(1,1),
  CarId int Not Null,
 ImageName varchar(255)  default 'Logo.jpeg',
-AddDate date default GETDATE(),
+AddDate date default GETDATE(Now),
 Foreign key(CarId) References Cars(Id)
 );
 Create Table BrandImages (

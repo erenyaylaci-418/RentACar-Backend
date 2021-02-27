@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete.ImageEntity;
@@ -18,14 +19,22 @@ namespace Business.Concrete
 
         public IResult Add(CarImage entity)
         {
+
+            var result = _carImageDal.GetAll(i => i.CarId == entity.CarId).Count;
+            
+            if (result > 5)
+            {
+                return new ErrorResult(Messages.NotAddedErrorCount);
+            }
+            entity.AddDate = DateTime.Now;
             _carImageDal.Add(entity);
-            return new SuccessResult();
+            return new SuccessResult(Messages.Added);
         }
 
         public IResult Delete(CarImage entity)
         {
             _carImageDal.Delete(entity);
-            return new SuccessResult();
+            return new SuccessResult(Messages.Deleted);
         }
 
         public IDataResult<List<CarImage>> GetAll()
