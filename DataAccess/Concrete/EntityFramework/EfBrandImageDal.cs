@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfBrandImageDal :IEntityRepositoryBase<BrandImage,CarSystemDBContext> ,IBrandImageDal
+    public class EfBrandImageDal :EfEntityRepositoryBase<BrandImage,CarSystemDBContext> ,IBrandImageDal
     {
     }
 }

@@ -126,5 +126,13 @@ namespace WebAPI.Controllers
 https://docs.microsoft.com/tr-tr/dotnet/api/system.io.file?view=net-5.0
 https://docs.microsoft.com/tr-tr/dotnet/api/system.guid.newguid?view=net-5.0
 https://docs.microsoft.com/tr-tr/aspnet/core/mvc/advanced/custom-model-binding?view=aspnetcore-5.0/
+//Eksik olan yer
+CREATE TABLE [dbo].[UserOperationClaims] (
+    [Id]               INT IDENTITY (1, 1) NOT NULL,
+    [UserId]           INT NOT NULL,
+    [OperationClaimId] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
 
  */
