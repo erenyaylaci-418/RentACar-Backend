@@ -12,5 +12,6 @@ namespace Business.Constants
         public static string Upgraded = "Güncellendi";
         public static string Listed = "Listelendi";
         public static string NotAddedErrorCount = " En fazla 5 resim girilebilir";
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }
