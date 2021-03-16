@@ -80,44 +80,56 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
-        [HttpGet("getbycarid")]
-        public IActionResult GetbyCarId(int carid)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            var result = _carImageService.GetByCarId(carid);
-           List<byte[]> files = new List<Byte[]>();
-            foreach (var image in result.Data)
+            var result = _carImageService.GetById(id);
+            var name = result.Data.ImageName;
+            string newPath;
+            if (name == null)
             {
-                
-                string filepath;
-                if (image.ImageName != null)
-                {
-                    filepath = path + "\\" + image.ImageName;
-                }
-                else
-                {
-                    filepath = defaultpath;
-                }
-
-                var file = System.IO.File.ReadAllBytes(filepath);
-                files.Add(file);
+                newPath = path + "\\" + "Logo.jpg";
+            }
+            else
+            {
+                newPath = path + "\\" + result.Data.ImageName;
             }
             
             
-           
             if (result.Success)
             {
-                return File(files[1], "image/jpeg");
+                byte[] file = System.IO.File.ReadAllBytes(newPath);
+                return File(file, "image/jpeg");
             }
-            return BadRequest();
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getbycarid")]
+        public IActionResult GetbyCarId(int id)
+        {
+            var result = _carImageService.GetByCarId(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message); 
+            
         }
         [HttpPost("update")]
         public IActionResult Update(CarImage carImage)
         {
             return Ok();
         }
-        
-       
+        [HttpGet("getbycarhomeid")]
+        public IActionResult GetByCarHomeId(int id)
+        {
+           
+              byte[] file = System.IO.File.ReadAllBytes(newPath);
+               return File(file, "image/jpeg");
+            
+           
+        }
 
     }
 }
