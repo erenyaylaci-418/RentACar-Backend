@@ -84,11 +84,11 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _carImageService.GetById(id);
-            var name = result.Data.ImageName;
+            var imageData = result.Data;
             string newPath;
-            if (name == null)
+            if (imageData == null)
             {
-                newPath = path + "\\" + "Logo.jpg";
+                newPath = Path.Combine(path, "Logo.jpg");
             }
             else
             {
@@ -124,6 +124,12 @@ namespace WebAPI.Controllers
         [HttpGet("getbycarhomeid")]
         public IActionResult GetByCarHomeId(int id)
         {
+            string newPath;
+            var result = _carImageService.GetByCarId(id);
+           
+            
+             newPath = Path.Combine(path, "Logo.jpg");
+               
            
               byte[] file = System.IO.File.ReadAllBytes(newPath);
                return File(file, "image/jpeg");
